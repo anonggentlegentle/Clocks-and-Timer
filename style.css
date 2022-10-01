@@ -17,16 +17,48 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: lightgray;
   font-size: 1.5rem;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
 }
 
-.container {
+.container__clock {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
+}
+.container__clock--main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  row-gap: 1.5rem;
+}
+.container__clock--main-date {
+  align-self: flex-start;
+}
+.container__clock--main-hours {
+  font-weight: 700;
+  font-size: 15rem;
+}
+.container__clock--world {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10rem;
+}
+.container__clock--world-date {
+  align-self: flex-start;
+}
+.container__clock--world-hours {
+  font-weight: 700;
+  font-size: 10rem;
+}
+.container__world--clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
