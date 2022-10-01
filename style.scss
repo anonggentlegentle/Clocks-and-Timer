@@ -46,14 +46,15 @@ body {
     }
 
     &--world {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
+      justify-items: center;
       align-items: center;
-      column-gap: 10rem;
+      width: 80%;
+      row-gap: 1.5rem;
 
       &-date {
         align-self: flex-start;
-        // font-size: 1.2rem;
       }
 
       &-hours {
@@ -68,5 +69,7 @@ body {
     flex-direction: column;
     align-items: center;
     row-gap: 1.5rem;
+    height: auto;
+    width: 60rem;
   }
 }
