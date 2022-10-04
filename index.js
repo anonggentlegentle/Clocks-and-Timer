@@ -3,6 +3,10 @@
 const mainClock = document.querySelector(".container__clock--main-hours");
 const mainCurrentDay = document.querySelector(".container__clock--main-date");
 const worldClocks = document.querySelector(".container__clock--world");
+const addWorldClockButton = document.querySelector(
+  ".container__dropdown-submit"
+);
+const timezoneDropdown = document.querySelector(".container__dropdown-menu");
 
 // Default world clock timezones
 const countries = ["America/New_York", "Europe/London", "Asia/Tokyo"];
@@ -37,8 +41,6 @@ const mainTimeAndDate = function () {
     mainClock.textContent = mainTime;
   }, 1000);
 };
-
-// console.log(Intl.supportedValuesOf("timeZone"));
 
 const worldTimeAndDate = function () {
   // Display world clock date and time
@@ -113,4 +115,18 @@ btnDeleteWorld.forEach((world) => {
     // Remove the child from dom tree/interface
     e.target.closest(".container__clock--world").removeChild(child);
   });
+});
+
+// Array of available timezones
+const availableTimezones = Intl.supportedValuesOf("timeZone");
+
+// Looping the timezones array
+availableTimezones.forEach((timezone) => {
+  // Creating the options element for the dropdown
+  const options = document.createElement("option");
+  options.setAttribute("value", `${timezone}`);
+  options.textContent = `${timezone.split("_").join(" ")}`;
+
+  // Appending created options elements to the dropdown input element
+  timezoneDropdown.appendChild(options);
 });
