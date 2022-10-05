@@ -100,22 +100,26 @@ const clockFunctions = function () {
 clockFunctions();
 
 // Select delete button
-const btnDeleteWorld = document.querySelectorAll(".delete-world-entry");
+let btnDeleteWorld = document.querySelectorAll(".delete-world-entry");
 
-// Delete selected world clock
-btnDeleteWorld.forEach((world) => {
-  world.addEventListener("click", function (e) {
-    // Remove country from countries array
-    const index = e.target.parentElement.dataset.index;
-    countries.splice(index, 1);
+const deletingTimezone = function () {
+  // Delete selected world clock
+  btnDeleteWorld.forEach((world) => {
+    world.addEventListener("click", function (e) {
+      // Remove country from countries array
+      const index = e.target.parentElement.dataset.index;
+      countries.splice(index, 1);
 
-    // Select child containing world date and time
-    const child = e.target.closest(".container__world--clock");
+      // Select child containing world date and time
+      const child = e.target.closest(".container__world--clock");
 
-    // Remove the child from dom tree/interface
-    e.target.closest(".container__clock--world").removeChild(child);
+      // Remove the child from dom tree/interface
+      e.target.closest(".container__clock--world").removeChild(child);
+    });
   });
-});
+};
+
+deletingTimezone();
 
 // Array of available timezones
 const availableTimezones = Intl.supportedValuesOf("timeZone");
@@ -129,4 +133,23 @@ availableTimezones.forEach((timezone) => {
 
   // Appending created options elements to the dropdown input element
   timezoneDropdown.appendChild(options);
+});
+
+// Adding functionality to timezone dropdown
+addWorldClockButton.addEventListener("click", function (e) {
+  // Prevent button from submitting
+  e.preventDefault();
+
+  // Checking if dropdown value is timezone and updating clock contents
+  if (timezoneDropdown.value !== "default") {
+    countries.push(timezoneDropdown.value);
+    worldClocks.innerHTML = "";
+    mainClock.textContent = "";
+    mainCurrentDay.textContent = "";
+    clockFunctions();
+  }
+
+  // Updating delete button
+  btnDeleteWorld = document.querySelectorAll(".delete-world-entry");
+  deletingTimezone();
 });
